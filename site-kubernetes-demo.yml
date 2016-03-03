@@ -1,0 +1,15 @@
+#
+#
+#
+---
+- hosts: demo-machine
+  sudo: yes
+
+ 
+  tasks:
+    - git: repo=https://github.com/cloudgear-net/demo-kubernetes.git
+        dest=/home/vmware/kubernetes-01
+
+  roles:
+  -  docker.ubuntu
+
