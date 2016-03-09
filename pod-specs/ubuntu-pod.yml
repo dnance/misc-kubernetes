@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: u-01
+spec:
+  containers:
+  - name: u-01
+    image: ubuntu:14.04
+    tty: true
+# problem with these lines think it has something to do with this issue
+# https://github.com/kubernetes/kubernetes/issues/16670
+#    args: [bash, -c, 
+#           'for ((i = 0; i < 20 ; i++)); do echo "$i: $(date)"; sleep 1; done']
+  restartPolicy: Never
