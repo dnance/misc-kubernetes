@@ -1,0 +1,18 @@
+[Unit]
+Description=kubelet
+Conflicts=etcd2.service
+After=kube-apiserverd
+Requires=kube-apiserverd
+
+[Service]
+User=root
+PermissionsStartOnly=true
+#Environment=ETCD_DATA_DIR=/var/lib/etcd
+#Environment=ETCD_NAME=%m
+ExecStart=/usr/bin/kubelet --api-servers=http://127.0.0.1:8080  
+Restart=always
+RestartSec=10s
+LimitNOFILE=40000
+[Install]
+WantedBy=multi-user.target
+

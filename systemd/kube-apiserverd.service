@@ -1,0 +1,18 @@
+[Unit]
+Description=kube-apiserver
+Conflicts=etcd2.service
+After=etcd
+Requires=etcd
+
+[Service]
+User=root
+PermissionsStartOnly=true
+#Environment=ETCD_DATA_DIR=/var/lib/etcd
+#Environment=ETCD_NAME=%m
+ExecStart=/usr/bin/kube-apiserver --etcd-servers=http://127.0.0.1:2379 --service-cluster-ip-range=10.0.0.0/16 
+Restart=always
+RestartSec=10s
+LimitNOFILE=40000
+[Install]
+WantedBy=multi-user.target
+
